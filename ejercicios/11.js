@@ -23,6 +23,7 @@ function getIndexsForPalindrome(word) {
   let res = [];
 
   if (!isPalindrome(word)) {
+
     res = changeIndex(word)
   }
 
@@ -49,16 +50,23 @@ function changeIndex(word) {
   let f = word.length - 1;
 
   while (i <= f) {
-    if (word[i] !== word[f]) {
-      let indexF = findIndex(word, word[f], i);
+    if (word[i] !== word[f] && getIndice(word, word[f], 0).length === 1 ) {
+      let indexF = getIndice(word, word[i], i);
 
-      for (let j = 0; j < findIndex.length; j++) {
+      for (let j = 0; j < indexF.length; j++) {
+        let newWord = changeLetter(word, f, indexF[j]);
+        if (isPalindrome(newWord)) return [indexF[j], f];
+      }
+    }    
+    else if (word[i] !== word[f]) {
+      let indexF = getIndice(word, word[f], i);
+
+      for (let j = 0; j < indexF.length; j++) {
         let newWord = changeLetter(word, i, indexF[j]);
         if (isPalindrome(newWord)) return [i, indexF[j]];
       }
     }
     
-
     i++;
     f--;
   }
@@ -80,7 +88,7 @@ function changeLetter(word, index1, index2) {
 
 }
 
-function findIndex(word, character, i) {
+function getIndice(word, character, i) {
   // devuelve una array con los índices de donde se encuentra el carácter, si no hay coincidencias devuelve array vacío.
   let indexArray = [];
   let index = word.indexOf(character, i);
@@ -93,5 +101,6 @@ function findIndex(word, character, i) {
   return indexArray;
 }
 
+getIndexsForPalindrome('rotaratov')
 
-module.exports = {getIndexsForPalindrome, isPalindrome, changeLetter, changeIndex, findIndex}
+module.exports = {getIndexsForPalindrome, isPalindrome, changeLetter, changeIndex, getIndice}

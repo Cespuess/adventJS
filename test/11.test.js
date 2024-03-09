@@ -25,7 +25,7 @@ describe('palíndromos con cambios', () => {
   test('index de letras a cambiar para que sea palíndromo', () => {
     expect(changeIndex('abab')).toEqual([0,1]);
     expect(changeIndex('aaababa')).toEqual([1,3]);
-expect(changeIndex('anerera')).toEqual([1, 3]);
+    expect(changeIndex('anerera')).toEqual([1, 3]);
     expect(changeIndex('taa')).toEqual([0, 1]);
     expect(changeIndex('rotaratov')).toEqual([4, 8]);// test a corregir
 

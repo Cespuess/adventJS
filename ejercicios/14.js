@@ -17,7 +17,7 @@ function maxGifts(houses) {
   for (let i = 2; i < houses.length; i++) {
     progressiveSums[i] = Math.max(progressiveSums[i - 2] + houses[i], progressiveSums[i - 1]);
   }
-  
+
   return progressiveSums[houses.length - 1];
 }
 
